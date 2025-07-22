@@ -55,20 +55,29 @@ searchbtn.addEventListener("click", () =>{
 
 let hrs = document.getElementById("hrs");
 let min = document.getElementById("min");
-let day =document.getElementById("day");
-let date =document.getElementById("date") ;
+let day = document.getElementById("day");
+let date = document.getElementById("date");
 let month = document.getElementById("month");
 let year = document.getElementById("year");
 
-let currenttime = new Date();
-const daynum = currenttime.getDay();
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-day.innerHTML = days[daynum];
+function updateDateTime() {
+    let currenttime = new Date();
+    
+    const daynum = currenttime.getDay();
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    day.innerHTML = days[daynum];
+    
+    date.innerHTML = currenttime.getDate();
+    month.innerHTML = currenttime.getMonth() + 1;
+    year.innerHTML = currenttime.getFullYear();
 
-date.innerHTML = currenttime.getDate();
-month.innerHTML = currenttime.getMonth() +1 ;
-year.innerHTML = currenttime.getFullYear();
-hrs.innerHTML = currenttime.getHours();
-min.innerHTML = currenttime.getMinutes();
-console.log(currenttime.getDay());
+    // Format with leading zeros if needed
+    hrs.innerHTML = String(currenttime.getHours()).padStart(2, '0');
+    min.innerHTML = String(currenttime.getMinutes()).padStart(2, '0');
+}
 
+// Call once immediately
+updateDateTime();
+
+// Update every second
+setInterval(updateDateTime, 60000);
