@@ -79,5 +79,5 @@ function updateDateTime() {
 // Call once immediately
 updateDateTime();
 
-// Update every second
+// Update every minutes
 setInterval(updateDateTime, 60000);
